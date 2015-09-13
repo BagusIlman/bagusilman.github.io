@@ -9,7 +9,6 @@ Kalau anda adalah Asp.Net MVC developer, mungkin anda belum tahu kalau secara de
 Anda dapat secara mudah mengatasi hal tersebut dengan menambahkan code di Global.asax pada method Application_Start()
 
 {% highlight csharp %}
-def print_hi(name)
 ViewEngines.Engines.Clear();
 ViewEngines.Engines.Add(new RazorViewEngine());
 {% endhighlight %}
