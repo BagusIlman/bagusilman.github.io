@@ -10,7 +10,7 @@ Sebenernya ga ada yang salah dengan fungsi yang return void, tapi  kayaknya saya
 
 Return boolean bisa jadi salah satu alternatif kalo kita butuh respon dari fungsi yang kita panggil. Dengan hal tersebut kita tidak perlu lagi mengecek apakah suatu proses berhasil atau tidak dari object-nya, cukup dari return value nilai fungsinya saja.
 
-{% highlight charp %}
+{% highlight csharp %}
     public class Sample
     {
         public int Hasil { get; set; }
@@ -39,9 +39,9 @@ Return boolean bisa jadi salah satu alternatif kalo kita butuh respon dari fungs
 
 Tapi bagaimana kalau memang kita benar-benar ga perlu nilai balikan fungsi? Benar benar ga perlu walaupun hanya sekedar boolean? Mungkin bisa dicoba dengan memberi balikan object-nya saja sehingga bisa di chain. Lebih lengkapnya bisa dilihat contoh dibawah:
 
-{% highlight charp %}
-public class Operasi {
+{% highlight csharp %}
 
+public class Operasi {
     public int Hasil { get;set; }
 
     public void Tambah(int number) {
@@ -63,7 +63,7 @@ System.Console.WriteLine(operasi.Hasil);
 
 Disini gw terus-terusan nulis kata operasi kalo pengen manggil Tambah atau Kurang karena memang fungsi Tambah dan Kurang-nya return void. bandingkan kalo kita return object operasi-nya, bukan hanya void:
 
-{% highlight charp %}
+{% highlight csharp %}
 public class Operasi {
 
     public int Hasil { get;set; }
