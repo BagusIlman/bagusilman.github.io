@@ -1,30 +1,35 @@
 ---
 layout: post
-title:  "Javascript in SharePoint"
-date:   2015-09-23 00:55:37
+title:  "Plan to Upgrade Your SharePoint "
+date:   2016-02-19 00:55:37
 categories: Article
 ---
+SharePoint 2016 already in RTM version, we still have to wait a while longer to be tried SharePoint 2016 in Production. Meanwhile, we still can try SharePoint 2016 in development environtment.
+Here is a little tips and things to consider when upgrading SharePoint. This article is mostly an experience that we found when upgrading 2010 to 2013, but may still apply when upgrading 2013 to 2016 version.
 
-Majority of my project is related to SharePoint. I works on SP workflow, WebParts,
-Event Receiver and all of SP implementation. Because of SP and other related MS
-product are tight to .Net language, so to speak, if you can do
-.Net then all of your problem in Ms stack,including SharePoint, are gone.
-But this rules are not applied anymore.
+## Minimize downtime during upgrade
 
-Back in the 2010 version, branding is not an easy task. We have to do some javascript trick to manipulate SharePoint
-look and feel to match its mock up.
-While 2013 are better in branding, new problem arise. SP now shifting to
-app model. Even sandbox solutions can only use client side scripting. The only use of BackEnd language is for farm solution.
+### Read-only databases
+You can make database readonly if necessary so that user still can access your site while upgrading SharePoint. A read only database can only be read but no content addition allowed during this phase.
 
-Apart from SharePoint, Javascript  dev is entering a heyday.
-Even javascript now is one of the server side language with Node.
-Learning it is one of the prerequisites to make cross platform app.
+### Parallel database upgrade
+You dont need to upgrade your database one by one, you can upgrade more than one database simultaneously. It can reduce overall downtime. Make an experiment first to find optimal number for your system.
 
-New style of service oriented application and Rest also emerges.
-New client side MVC framework like Angular also widely use even in Microsoft
-environment.
-Right now it is a common to use SharePoint as Rest provider instead of
-creating farm solution web part that have to be fully trust code.
+## Special cases upgrades
+Below are special case that need to address more when upgrading SharePoint.
 
-So if you are a SharePoint Dev or .Net Dev, it is the time to you to learn
-javascript as one of your language beside C#.
+###Very Large Databases (VLDB)
+Larger database means longer downtime. If one database consist of multiple site collection, we can split this database to multiple database. This link has a good info about the process. [https://technet.microsoft.com/en-us/library/cc825328.aspx](https://technet.microsoft.com/en-us/library/cc825328.aspx)
+
+###Forms-based authentication
+Before upgrade site content, dont forget to check your custom login form and login process so that it can be applied with new object model.
+
+## Identify Type of Customizations
+Now its time to do some research about what customization that have been implemented in our SharePoint farm.
+[Test-SPContentDatabase](https://technet.microsoft.com/en-us/library/ff607941.aspx) cmdlet can help you to determine if you missing some sharepoint solution.
+If the customiation is not related to SharePoint (eg custom Web services, Windows services, HTTP Module) [Test-SPContentDatabase](https://technet.microsoft.com/en-us/library/ff607941.aspx) will not help you.
+You may have to read documentation about your farm, if you dont have any, maybe it is time to documenting it.
+
+After all consideration above are resolved, its time to try it. Just remember that upgrade process are per database content basis. If one of your database content are not ready to upgrade or you are not confident enough to upgrade it, leave it in current version for now while you fix possible error/ missing component in that content Db.
+
+Happy Upgrading...

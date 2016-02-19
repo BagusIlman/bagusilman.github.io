@@ -7,7 +7,7 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://bagusilman.com" # the base hostname & protocol for your site
 twitter_username: ilmanbag
 github_username:  bagusilman
-
+permalink: pretty
 # Build settings
 markdown: kramdown
 #highlighter: false
